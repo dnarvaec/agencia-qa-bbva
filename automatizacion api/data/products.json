@@ -1,0 +1,37 @@
+{
+  "valid": {
+    "product":                "000000000000002342",
+    "productDescription":     "BIOACEM B50",
+    "baseUnit":               "UG6",
+    "productType":            "FERT",
+    "productHierarchy":       "001070000300000001",
+    "productLine":            "04",
+    "productGroup":           "M001",
+    "salesTAXClassification": "A",
+    "salesVATValue":          "19",
+    "status":                 "1",
+    "modificationDate":       "2023-09-20",
+    "modificationHour":       "09:33:00"
+  },
+  "update": {
+    "product":            "000000000000002342",
+    "productDescription": "BIOACEM B50 - Actualizado",
+    "status":             "1",
+    "modificationDate":   "2023-09-21",
+    "modificationHour":   "11:00:00"
+  },
+  "missingProduct": {
+    "productDescription":     "Producto sin código SAP",
+    "baseUnit":               "UG6",
+    "productType":            "FERT",
+    "productHierarchy":       "001070000300000001",
+    "productLine":            "04",
+    "productGroup":           "M001",
+    "salesTAXClassification": "A",
+    "salesVATValue":          "19",
+    "status":                 "1",
+    "modificationDate":       "2023-09-20",
+    "modificationHour":       "09:33:00"
+  }
+}
+

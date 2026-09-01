@@ -1,0 +1,27 @@
+{
+  "valid": {
+    "vendor":              "000895",
+    "vendorNit":           "10417455",
+    "vendorName":          "ELECTRONICOS SAS",
+    "vendorComercialName": "DEV",
+    "status":              "1",
+    "modificationDate":    "2023-09-22",
+    "modificationHour":    "17:12:00"
+  },
+  "update": {
+    "vendor":              "000895",
+    "vendorComercialName": "DEV Actualizado",
+    "status":              "0",
+    "modificationDate":    "2023-09-23",
+    "modificationHour":    "09:00:00"
+  },
+  "missingVendor": {
+    "vendorNit":           "10417455",
+    "vendorName":          "ELECTRONICOS SAS",
+    "vendorComercialName": "DEV",
+    "status":              "1",
+    "modificationDate":    "2023-09-22",
+    "modificationHour":    "17:12:00"
+  }
+}
+
