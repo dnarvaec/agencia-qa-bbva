@@ -2,7 +2,7 @@ import { defineConfig } from '@playwright/test';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
-dotenv.config({ path: path.join(__dirname, '../.env') });
+dotenv.config({ path: path.join(__dirname, '../.env'), override: true });
 
 const APP_URL = process.env.APP_URL;
 if (!APP_URL) throw new Error('APP_URL no está definida en el archivo .env');
@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   use: {
     baseURL: APP_URL,
-    trace: 'off',
+    trace: 'on',
     screenshot: 'on',
     video: 'on',
     headless: true,

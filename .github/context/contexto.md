@@ -40,6 +40,8 @@ Flujo único de preformalización 100% digital ("Hazte cliente en menos de 10 mi
 > No aplica un usuario/contraseña previo: es un flujo público de **alta de cliente nuevo** (onboarding), no de login a una cuenta existente.
 > Los "datos de prueba" son los que el propio flujo solicita paso a paso (documento de identidad, celular, correo, contraseña nueva, etc.) — deben ser datos válidos y elegibles en CIFIN/SOI para poder avanzar; pendiente de definir un set de datos de prueba QA con el equipo funcional.
 
+> ⚠️ **IMPORTANTE — `numeroCedula` es de UN SOLO USO**: una vez un número de cédula se utiliza exitosamente en una ejecución del flujo de preformalización, queda **inutilizable** para futuras ejecuciones (no puede reutilizarse). Antes de reejecutar el flujo completo, verifica si la cédula del set de datos ya fue usada; si es así, solicita al usuario un número de cédula nuevo o consigue uno alterno — NUNCA reintentes con una cédula ya consumida asumiendo que funcionará. Esta restricción aplica **únicamente** al campo `numeroCedula`; el resto de los datos de prueba (nombres, celular, correo, dirección, contraseña, etc.) son genéricos y sí pueden reutilizarse libremente entre ejecuciones.
+
 ---
 
 ## Comportamientos Conocidos de la Aplicación

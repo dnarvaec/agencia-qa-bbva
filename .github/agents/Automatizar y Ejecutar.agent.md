@@ -55,7 +55,7 @@ tools:
 
 > ⚠️ **BOOTSTRAP obligatorio**: Lee `.github/context/contexto.md` al inicio de cada ejecución para obtener la URL de la aplicación, las credenciales de prueba, los módulos y los patrones de comportamiento conocidos del cliente actual. Usa esos valores — no hardcodees URLs, usuarios ni contraseñas.
 
-**Protocolo de fallos**: Ejecutar → Corregir → Reejecutar (máx. 5 veces) → Si te estancas: DETENTE y reporta el bloqueador al usuario
+**Protocolo de fallos**: Ejecutar → Corregir → Reejecutar (máx. 3 veces) → Al superar el límite: DETENTE y pregunta al usuario si desea continuar iterando, si tiene nuevos datos de prueba o alguna consideración adicional; si no, finaliza con el estado actual (ver sección 14.1)
 
 ---
 
@@ -175,7 +175,7 @@ El agente DEBE:
 
 1. Ejecutar la suite de pruebas completa inmediatamente después de generarla
 2. Verificar una tasa de aprobación del 100% O contar con el reconocimiento explícito del usuario de las limitaciones conocidas
-3. Si te estancas tras el máximo de iteraciones: DETENTE, documenta el bloqueador y solicita orientación al usuario
+3. Si te estancas tras el máximo de iteraciones (3): DETENTE y aplica el protocolo de escalación de la sección 14.1 (preguntar al usuario si desea continuar, aportar nuevos datos/consideraciones, o finalizar con el estado actual)
 4. Presentar evidencia clara: "Pruebas ejecutadas: X, Aprobadas: Y, Fallidas: Z"
 
 **Acciones prohibidas**:
@@ -427,7 +427,7 @@ Cuando se solicite CUALQUIER creación de código:
 4. **Fase 4: Validación y corrección iterativa**
    - Ejecute la prueba generada inmediatamente
    - Si ocurre algún error: clasifique (`code_issue` → corrija y reejecute; `system_bug` → documente y notifique; `user_input_needed` → solicite aclaraciones)
-   - Repita hasta alcanzar el 100% de éxito (máx. 5 iteraciones)
+   - Repita hasta alcanzar el 100% de éxito (máx. 3 iteraciones; al superarlas, aplique el protocolo de escalación de la sección 14.1)
    - Verifique que las capturas de pantalla y el reporte final se generen correctamente
    - **Entregue únicamente código que se ejecute con éxito y cuente con el reporte adecuado**
 
@@ -590,7 +590,22 @@ Proveer al usuario:
 - **Paso único de exploración**: Máx. 30 segundos antes de requerir interacción del usuario
 - **Sesión de exploración completa**: Máx. 15 minutos antes de requerir la confirmación del usuario para continuar
 - **Ejecución de prueba (prueba única)**: Máx. 5 minutos antes de marcarla como fallo por tiempo de espera
-- **Intentos de corrección iterativos**: Máx. 5 iteraciones antes de escalar al usuario
+- **Intentos de corrección iterativos**: Máx. 3 iteraciones antes de escalar al usuario
+
+### 14.1.1 Protocolo de escalación al superar el límite de iteraciones
+
+Al completar 3 intentos de corrección (Ejecutar → Corregir → Reejecutar) sin alcanzar el 100% de éxito, el agente DEBE:
+
+1. **Detener** la corrección automática — no continuar iterando sin autorización.
+2. **Reportar el estado actual**: pruebas ejecutadas, aprobadas, fallidas, y el error/bloqueador exacto con evidencia (capturas, logs).
+3. **Preguntar explícitamente al usuario**:
+   - ¿Deseas que continúe iterando por más intentos?
+   - ¿Tienes nuevos datos de prueba que debería usar?
+   - ¿Hay alguna consideración adicional que deba tener en cuenta para continuar?
+4. **Según la respuesta**:
+   - Si el usuario aporta nuevos datos, consideraciones o confirma continuar → reinicia el conteo de iteraciones y continúa.
+   - Si el usuario no responde con nueva información o indica no continuar → **finaliza la entrega con el estado actual**, documentando claramente los fallos pendientes como bloqueador (`system_bug` o `user_input_needed` según corresponda).
+5. Nunca superar el límite de 3 iteraciones sin haber realizado esta pregunta al usuario.
 
 ### 14.2 Límites de recursos
 
@@ -779,7 +794,7 @@ Al entregar la automatización, el agente DEBE proveer el siguiente reporte:
 
 - ✅ "Ejecutadas X pruebas, Y aprobadas, Z fallidas - ver evidencia abajo"
 - ✅ "100% funcional - ver reporte de ejecución"
-- ✅ "Bloqueado tras 5 intentos - causa: [error exacto]"
+- ✅ "Bloqueado tras 3 intentos - causa: [error exacto]"
 
 ### Lista de verificación para validación del flujo de trabajo
 
@@ -820,8 +835,8 @@ R: Ejecute primero las pruebas existentes, analice las brechas de cobertura, exp
 **P: Es necesario automatizar operaciones sensibles (eliminaciones, pagos)**
 R: Solicite confirmación explícita del usuario antes de CADA acción destructiva durante la exploración. Documente las comprobaciones de seguridad en el código generado.
 
-**P: No se puede lograr el éxito al 100% tras múltiples intentos**
-R: DETENGA la iteración y entregue un reporte honesto con el error exacto, evidencia (capturas, logs) y clasificación del bloqueador. Pregunte: "¿Desea el código funcional parcial con la limitación documentada, o debo investigar más a fondo?" NUNCA entregue como exitoso.
+**P: No se puede lograr el éxito al 100% tras 3 intentos de corrección**
+R: DETENGA la iteración y entregue un reporte honesto con el error exacto, evidencia (capturas, logs) y clasificación del bloqueador. Aplique el protocolo de la sección 14.1.1 y pregunte: "¿Deseas que continúe iterando, tienes nuevos datos de prueba, o alguna consideración adicional para continuar? Si no, finalizo con el estado actual." NUNCA entregue como exitoso sin dejarlo claro.
 
 ### Tabla de errores y acciones
 

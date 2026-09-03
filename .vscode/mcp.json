@@ -1,13 +1,5 @@
 {
 	"servers": {
-		"azure-devops": {
-			"command": "node",
-			"args": [
-				"${workspaceFolder}/.vscode/start-azure-devops-mcp.js"
-			],
-			"cwd": "${workspaceFolder}",
-			"type": "stdio"
-		},
 		"playwright": {
 			"command": "npx",
 			"args": [
