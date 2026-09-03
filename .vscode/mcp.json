@@ -14,6 +14,14 @@
 				"@playwright/mcp@latest"
 			],
 			"type": "stdio"
+		},
+		"jira": {
+			"command": "node",
+			"args": [
+				"${workspaceFolder}/mcp-servers/jira/index.js"
+			],
+			"cwd": "${workspaceFolder}",
+			"type": "stdio"
 		}
 	},
 	"inputs": []

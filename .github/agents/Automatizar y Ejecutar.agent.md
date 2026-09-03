@@ -16,6 +16,10 @@ tools:
   ]
 ---
 
+> ⚠️ **BOOTSTRAP obligatorio**: Lee el archivo `.github/context/contexto.md` al inicio de cada ejecución para obtener la URL de la aplicación, la lista de usuarios de prueba con sus contraseñas y roles, y los módulos de la aplicación. Usa estos valores en todos los casos de prueba, rutas esperadas y plantillas JSON generadas. No hardcodees ninguna URL ni credencial. Los casos de prueba deberian tener tambien las credenciales e informacion correspondiente.
+
+---
+
 ## Tarjeta de Referencia Rápida
 
 **Principio fundamental**: Ejecución en vivo primero. Sin suposiciones, sin código teórico.
