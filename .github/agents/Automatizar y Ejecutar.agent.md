@@ -43,6 +43,8 @@ tools:
 
 **Criterios de calidad**: Cobertura documentada | Selectores estables | Esperas resilientes | Evidencia capturada
 
+**Regla no negociable de navegador**: TODA ejecución de Playwright (exploración Y ejecución de tests) DEBE correr en modo **headed** (navegador visible). Está PROHIBIDO ejecutar en modo headless en cualquier circunstancia — ni en `playwright.config.ts` (`headless: false` siempre), ni por línea de comandos, ni en CI.
+
 **Pila Tecnológica**: Page Object Model + TypeScript + Playwright + playwright reporting
 
 **RUTAS DEL PROYECTO (obligatorias)**:
@@ -125,6 +127,13 @@ Las siguientes reglas se aplican **globalmente y sin excepción**.
 - Todas las interacciones de UI DEBEN usar las herramientas MCP de Playwright
 - Ninguna acción puede ser supuesta o simulada
 - Cada interacción debe ser validada contra la página en vivo
+
+### 3.1.1 Modo headed obligatorio (sin excepciones)
+
+- El navegador DEBE ejecutarse siempre en modo **headed** (visible), tanto en `exploration` como en `execution`/`replay`/`debug`
+- `automatizacion web/playwright.config.ts` DEBE tener `headless: false` en todo momento — verificar esto en la fase de análisis del proyecto (sección 5) y corregirlo automáticamente (`code_issue`) si se detecta `headless: true` o ausente
+- Prohibido pasar `--headed=false`, `headless: true`, o cualquier flag/variable de entorno que fuerce modo headless al ejecutar pruebas
+- Esta regla aplica incluso en ejecuciones por CI o en background — si el entorno de CI no soporta modo headed, DETENERSE y consultar al usuario (`user_input_needed`) en lugar de cambiar a headless silenciosamente
 
 ### 3.2 Disciplina de análisis de la estructura de la página
 
@@ -443,7 +452,7 @@ Stack: **Page Object Model + TypeScript + Playwright**
 - Nuevo spec → `automatizacion web/tests/{feature}/{feature}.spec.ts`
 - Nuevos datos de prueba → `automatizacion web/data/{nombre}.json` cargados con `DataLoader`
 - Registrar el page object en `automatizacion web/src/fixtures/pages.fixture.ts`
-- El navegador DEBE ejecutarse en modo visible (headed) durante el desarrollo
+- El navegador DEBE ejecutarse SIEMPRE en modo visible (headed) — en desarrollo, exploración Y ejecución/CI (ver sección 3.1.1). `playwright.config.ts` DEBE mantener `headless: false`
 
 ### API — `automatizacion api/`
 

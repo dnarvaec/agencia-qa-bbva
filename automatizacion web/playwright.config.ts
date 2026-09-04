@@ -22,7 +22,8 @@ export default defineConfig({
     trace: 'on',
     screenshot: 'on',
     video: 'on',
-    headless: true,
+    // Regla del agente "Automatizar y Ejecutar": SIEMPRE modo headed (exploración y ejecución)
+    headless: false,
     locale: 'es-CO',
     // Certificado SSL corporativo NTT DATA — red con inspección SSL
     ignoreHTTPSErrors: true,
